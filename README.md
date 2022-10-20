@@ -12,3 +12,5 @@ Recursos utilizados:
 Framework:
 - Bootstrap 5.x
  
+Fontes:
+- Font Awesome 6
