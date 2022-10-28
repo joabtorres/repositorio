@@ -1,49 +1,5 @@
-<!doctype html>
-<html lang="pt-br">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Repositório Institucional de Trabalho de Conclusão de Curso </title>
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <link href="assets/css/fontawesome.min.css" rel="stylesheet">
-        <link href="assets/css/brands.min.css" rel="stylesheet">
-        <link href="assets/css/solid.min.css" rel="stylesheet">
-    </head>
-    <body>
-        <!--<nav class="navbar navbar-expand-lg bg-light">-->
-
-        <nav class="navbar navbar-expand-lg  navbar-dark bg-success">
-            <div class="container">
-                <a class="navbar-brand d-sm-none d-md-block" href="#">Repositório Institucional de Trabalho de Conclusão de Curso</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <ul class="navbar-nav mb-2 mb-lg-0 me-3">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#"> <i class="fa fa-home"></i> Página Inicial</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-download"></i> Documentos
-                            </a>
-                            <ul class="dropdown-menu ">
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de publicação</a></li>
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de correção de publicação</a></li>
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de remoção de publicação</a></li>
-                            </ul>
-                        </li>   
-                        <li class="nav-item d-sm-none d-md-block">
-                            <a class="nav-link" aria-current="page" href="#"> <i class="fa fa-user-lock"> </i> Acesso restrito</a>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-        <!--FIM <nav class="navbar navbar-expand-lg bg-light">-->
-        <div class="container mt-4">
+ <!--FIM <nav class="navbar navbar-expand-lg bg-light">-->
+ <div class="container mt-4">
             <div class="row">
                 <div class="col-md-8">
                     <div class="row">
@@ -119,7 +75,7 @@
                                     <button class="btn btn-success">Ver mais</button>
                                 </div>
                             </div>
-                            
+
                             <div class="card m-2">
                                 <div class="card-header">
                                     <h4>Titulo</h4>
@@ -133,7 +89,7 @@
                                     <button class="btn btn-success">Ver mais</button>
                                 </div>
                             </div>
-                            
+
                             <div class="card m-2">
                                 <div class="card-header">
                                     <h4>Titulo</h4>
@@ -188,6 +144,3 @@
             </div>
 
         </div>
-
-    </body>
-</html>
