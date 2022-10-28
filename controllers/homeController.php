@@ -6,7 +6,5 @@ class homeController extends controller {
         $dados = array();
         $this->loadTemplate('home', $dados);
     }
-
 }
-
 ?>

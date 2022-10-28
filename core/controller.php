@@ -10,24 +10,31 @@
  * @package core
  * @example classe controller
  */
-
 class controller {
 
     /**
-     * Está função verifica se a $_SESSION['usuario_sessao'] está inicializada, caso esteja então verifica se o usuario tem permissao de acesso e sua conta esteja ativa.
+     * Está função verifica se a $_SESSION['usuario'] está inicializada, caso esteja então verifica se o usuario tem permissao de acesso e sua conta esteja ativa.
      * @return int 
      * @access protected
      * @author Joab Torres <joabtorres1508@gmail.com>
      */
     protected function checkUser() {
-        if (isset($_SESSION['usuario_sessao']) && is_array($_SESSION['usuario_sessao']) && isset($_SESSION['usuario_sessao']['statu'])) {
-            if ($_SESSION['usuario_sessao']['statu'] == 1) {
-                return $_SESSION['usuario_sessao']['nivel'];
+        if (isset($_SESSION['usuario']) && is_array($_SESSION['usuario']) && isset($_SESSION['usuario']['status'])) {
+            if ($_SESSION['usuario']['status'] == 1) {
+                return $_SESSION['usuario']['nivel'];
             }
         } else {
-            $url = BASE_URL . '/login';
-            header("Location: " . $url);
-            return 0;
+            return null;
+        }
+    }
+
+    protected function getCodInstituicao() {
+        if (isset($_SESSION['usuario']) && is_array($_SESSION['usuario']) && isset($_SESSION['usuario']['status'])) {
+            if ($_SESSION['usuario']['status'] == 1) {
+                return $_SESSION['usuario']['instituicao_cod'];
+            }
+        } else {
+            return null;
         }
     }
 

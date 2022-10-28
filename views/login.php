@@ -22,9 +22,11 @@
                 <span class="input-group-text" id="basic-addon2"><i class="fa fa-key"></i></span>
                 <input type="password" class="form-control" placeholder="Exemplo: *******" name="nSenha" aria-label="Password" aria-describedby="basic-addon2">
             </div>
-            <span class="p-2 mb-3 bg-danger text-white d-block"><i class="fa fa-info-circle"></i> O Campo E-mail e/ou Senha está incorreto!</span>
+            <?php if (isset($mensagem) && !empty($mensagem)) : ?>
+                <span class="p-2 mb-3 bg-danger text-white d-block"><i class="fa fa-info-circle"></i> <?php echo $mensagem?></span>
+            <?php endif ?>
             <div class="d-grid">
-                <button type="submit" class="btn btn-success"> <i class=" fa fa-sign-in-alt"></i> Fazer Login</button>
+                <button type="submit" class="btn btn-success" name="nEntrar"> <i class=" fa fa-sign-in-alt"></i> Fazer Login</button>
             </div>
         </form>
     </body>

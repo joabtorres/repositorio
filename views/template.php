@@ -24,27 +24,29 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="<?php echo BASE_URL ?>"> <i class="fa fa-home"></i> Página Inicial</a>
                         </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-plus-square"></i> Cadastrar
-                            </a>
-                            <ul class="dropdown-menu ">
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de publicação</a></li>
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de correção de publicação</a></li>
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de remoção de publicação</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-search"></i> Consultar
-                            </a>
-                            <ul class="dropdown-menu ">
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de publicação</a></li>
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de correção de publicação</a></li>
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de remoção de publicação</a></li>
-                            </ul>
-                        </li>
+                        <?php if ($this->checkUser() != null) : ?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-plus-square"></i> Cadastrar
+                                </a>
+                                <ul class="dropdown-menu ">
+                                    <li><a class="dropdown-item" href="<?php echo BASE_URL . 'turma/cadastrar' ?>"> <i class="fa fa-add"></i> Turma</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo BASE_URL . 'publicacao/cadastrar' ?>"> <i class="fa fa-add"></i> Publicação</a></li>
+                                    <li class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="<?php echo BASE_URL . 'usuario/cadastrar' ?>"> <i class="fa fa-add"></i> Usuário</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-search"></i> Consultar
+                                </a>
+                                <ul class="dropdown-menu ">
+                                    <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de publicação</a></li>
+                                    <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de correção de publicação</a></li>
+                                    <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de remoção de publicação</a></li>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-download"></i> Documentos
@@ -64,6 +66,6 @@
             </div>
         </nav>
         <?php $this->loadViewInTemplate($viewName, $viewData) ?>
-
+        <script src="<?php echo BASE_URL ?>assets/js/script.js"></script>
     </body>
 </html>
