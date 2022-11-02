@@ -115,4 +115,10 @@ class controller {
         }
     }
 
+    protected function showFileName($arquivo) {
+        $array = explode("/", $arquivo);
+        $qtd = count($array) - 1;
+        return $array[$qtd];
+    }
+
 }

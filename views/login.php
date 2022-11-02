@@ -3,6 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/gif" href="<?php echo BASE_URL ?>assets/imagens/icon.png" sizes="32x32" />
+        <meta property="ogg:title" content="<?php echo NAME_PROJECT ?>">
+        <meta property="ogg:description" content="<?php echo NAME_PROJECT ?>">
         <title><?php echo NAME_PROJECT ?></title>
         <link href="<?php echo BASE_URL ?>assets/css/bootstrap.min.css" rel="stylesheet">
         <link href="<?php echo BASE_URL ?>assets/css/login.css" rel="stylesheet">
@@ -23,7 +26,7 @@
                 <input type="password" class="form-control" placeholder="Exemplo: *******" name="nSenha" aria-label="Password" aria-describedby="basic-addon2">
             </div>
             <?php if (isset($mensagem) && !empty($mensagem)) : ?>
-                <span class="p-2 mb-3 bg-danger text-white d-block"><i class="fa fa-info-circle"></i> <?php echo $mensagem?></span>
+                <span class="p-2 mb-3 bg-danger text-white d-block"><i class="fa fa-info-circle"></i> <?php echo $mensagem ?></span>
             <?php endif ?>
             <div class="d-grid">
                 <button type="submit" class="btn btn-success" name="nEntrar"> <i class=" fa fa-sign-in-alt"></i> Fazer Login</button>

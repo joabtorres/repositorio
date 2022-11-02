@@ -144,4 +144,20 @@ class crud_db extends model {
         return true;
     }
 
+    /**
+     * Está é responsável excluir uma imagem de usuário;
+     * @param String $url_image - diretório do arquivo;
+     * @access private
+     * @return boolean TRUE or FALSE
+     * @author Joab Torres <joabtorres1508@gmail.com>
+     */
+    public function delete_file($url_image) {
+        if (file_exists($url_image)) {
+            unlink($url_image); //arquivo removido s
+            return true;
+        } else {
+            FALSE;
+        }
+    }
+
 }
