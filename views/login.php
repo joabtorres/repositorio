@@ -30,6 +30,7 @@
             <?php endif ?>
             <div class="d-grid">
                 <button type="submit" class="btn btn-success" name="nEntrar"> <i class=" fa fa-sign-in-alt"></i> Fazer Login</button>
+                <a href="<?php echo BASE_URL ?>" class="btn btn-danger mt-2" name="nEntrar"> <i class=" fa fa-left-long"></i> Voltar á página principal</a>
             </div>
         </form>
     </body>

@@ -9,8 +9,13 @@
             </nav>
         </div>
         <div class="col-12">
+            <?php if ($this->checkUser()): ?>
+                <p class="text-end">
+                    <a class="btn btn-primary btn-sm" href="<?php echo BASE_URL . 'publicacao/editar/' . $publicacao['cod'] ?>" title="Editar"><i class="fa fa-edit"></i> Editar</a>
+                    <button type="button"  class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal_relatorio_<?php echo $publicacao['cod'] ?>" title="Excluir"><i class="fa fa-trash"></i> Excluir</button>
+                </p>
+            <?php endif; ?>
             <table class="table">
-
                 <tr>
                     <td class="bg-light" width="200px">Título: </td>
                     <td><?php echo!empty($publicacao['titulo']) ? $publicacao['titulo'] : ''; ?>.</td>
@@ -75,3 +80,39 @@
         </div>
     </div>
 </div>
+
+<?php
+if ($this->checkUser()):
+    if (isset($publicacao) && is_array($publicacao)) :
+        ?>        
+        <!--MODAL - ESTRUTURA BÁSICA-->
+        <section class="modal fade" id="modal_relatorio_<?php echo $publicacao['cod'] ?>" tabindex="-1" aria-labelledby="modal_relatorio_<?php echo $publicacao['cod'] ?>" aria-hidden="true">
+            <article class="modal-dialog modal-md modal-dialog-centered" role="document">
+                <section class="modal-content">
+                    <header class="modal-header bg-danger text-white">
+                        <h5 class="modal-title">Deseja remover este registro?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </header>
+                    <article class="modal-body">
+                        <ul class="list-unstyled">
+                            <li><b>Cod: </b> <?php echo!empty($publicacao['cod']) ? $publicacao['cod'] : '' ?>;</li>
+                            <li><b>Turma: </b> <?php echo!empty($publicacao['turma']) ? $publicacao['turma'] : '' ?>;</li>
+                            <li><b>Titulo: </b> <?php echo!empty($publicacao['titulo']) ? $publicacao['titulo'] : '0' ?>;</li>
+                            <li><b>Autor(es): </b> <?php echo!empty($publicacao['autor']) ? $publicacao['autor'] : '0' ?>;</li>
+                            <li><b>Orientador(a): </b> <?php echo!empty($publicacao['orientador']) ? $publicacao['orientador'] : '0' ?>.</li>
+                        </ul>
+                        <p class="text-danger"><span class="font-bold">OBS : </span> Ao clicar em "Excluir", este registro e todos registos relacionados ao mesmo deixaram de existir no sistema.</p>
+                    </article>
+                    <footer class="modal-footer">
+                        <a class="btn btn-danger pull-left" href="<?php echo BASE_URL . 'publicacao/excluir/' . $publicacao['cod'] ?>"> <i class="fa fa-trash"></i> Excluir</a> 
+                        <button class="btn btn-default" type="button" data-bs-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>
+                    </footer>
+                </section>
+            </article>
+        </section>
+        <?php
+    endif;
+endif;
+?>

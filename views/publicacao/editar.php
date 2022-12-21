@@ -4,8 +4,8 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb p-3 bg-light">
                     <li class="breadcrumb-item"><a href="<?php echo BASE_URL ?>" class="text-decoration-none"> <i class="fa fa-home"></i> Página Inícial</a></li>
-                    <li class="breadcrumb-item"><a href="#" class="text-decoration-none"><i class="fa fa-plus-square"></i> Cadastrar</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><i class="fa fa-add"></i> Publicação </li>
+                    <li class="breadcrumb-item"><a href="<?php echo BASE_URL ?>publicacao/publicacao/<?php echo $cadForm['cod'] ?>" class="text-decoration-none"><i class="fa fa-book"></i> Publicação</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><i class="fa fa-edit"></i> Publicação </li>
                 </ol>
             </nav>
         </div>
@@ -19,11 +19,11 @@
         <div class="col-12 mt-1">
             <section class="card bg-light">
                 <header class="card-header bg-success text-white">
-                    <h5 class="card-title m-2"><i class="fa fa-plus-square"></i>  Publicação</h5>
+                    <h5 class="card-title m-2"><i class="fa fa-edit"></i>  Publicação</h5>
                 </header>
                 <article class="card-body">
-                    <form class="row g-3 needs-validation" method="POST" action="<?php echo BASE_URL ?>publicacao/cadastrar" enctype="multipart/form-data" autocomplete="off"  name="nFormPublicacao">
-                        <input type="hidden" name="nCod" placeholder="Exemplo: 2015" value="<?php isset($cadForm['cod']) ? $cadForm['cod'] : '' ?>"required>
+                    <form class="row g-3 needs-validation" method="POST" action="<?php echo BASE_URL ?>publicacao/editar/<?php echo isset($cadForm['cod']) ? $cadForm['cod'] : '' ?>" enctype="multipart/form-data" autocomplete="off"  name="nFormPublicacao">
+                        <input type="hidden" name="nCod" placeholder="Exemplo: 2015" value="<?php echo isset($cadForm['cod']) ? $cadForm['cod'] : '' ?>"required>
                         <div class="col-md-4">
                             <label for="iArea" class="form-label">Área de Conhecimento: </label>
                             <select class="form-select" id="iArea" name="nArea" required >
@@ -86,7 +86,7 @@
 
                         <div class="col-md-9">
                             <label for="iNome" class="form-label">Título:</label>
-                            <input type="text" class="form-control" id="iTitulo" name= "nTitulo" placeholder="Exemplo: SISTEMA DE INFORMAÇÃO GERENCIAL À COOPERTATIVA DOS TAXISTAS DE ITAITUBA (COOTAX)" value="<?php isset($cadForm['titulo']) ? $cadForm['titulo'] : '' ?>" required>
+                            <input type="text" class="form-control" id="iTitulo" name= "nTitulo" placeholder="Exemplo: SISTEMA DE INFORMAÇÃO GERENCIAL À COOPERTATIVA DOS TAXISTAS DE ITAITUBA (COOTAX)" value="<?php echo isset($cadForm['titulo']) ? $cadForm['titulo'] : '' ?>" required>
                             <div class="invalid-feedback">
                                 Informe o título
                             </div>
@@ -100,35 +100,35 @@
                         </div>
                         <div class="col-md-12">
                             <label for="iAutor" class="form-label">Autor:</label>
-                            <input type="text" class="form-control" id="iAutor" name= "nAutor" placeholder="Exemplo: Joab Torres Alencar" value="<?php isset($cadForm['autor']) ? $cadForm['autor'] : '' ?>" required>
+                            <input type="text" class="form-control" id="iAutor" name= "nAutor" placeholder="Exemplo: Joab Torres Alencar" value="<?php echo isset($cadForm['autor']) ? $cadForm['autor'] : '' ?>" required>
                             <div class="invalid-feedback">
                                 Informe o autor
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="iOrientador" class="form-label">Orientador(a):</label>
-                            <input type="text" class="form-control" id="iOrientador" name="nOrientador" placeholder="Exemplo: Diego da Silva Smith" value="<?php isset($cadForm['orientador']) ? $cadForm['orientador'] : '' ?>"required>
+                            <input type="text" class="form-control" id="iOrientador" name="nOrientador" placeholder="Exemplo: Diego da Silva Smith" value="<?php echo isset($cadForm['orientador']) ? $cadForm['orientador'] : '' ?>"required>
                             <div class="invalid-feedback">
                                 Informe o/a orientador(a)
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="iCoorientador" class="form-label">Coorientador(a):</label>
-                            <input type="text" class="form-control" id="iCoorientador" name="nCoorientador" placeholder="Exemplo: José Rodrigo Alves Amaral" value="<?php isset($cadForm['coorientador']) ? $cadForm['coorientador'] : '' ?>">
+                            <input type="text" class="form-control" id="iCoorientador" name="nCoorientador" placeholder="Exemplo: José Rodrigo Alves Amaral" value="<?php echo isset($cadForm['coorientador']) ? $cadForm['coorientador'] : '' ?>">
                             <div class="invalid-feedback">
                                 Informe o/a coorientador(a)
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="iMembro_1" class="form-label">Avaliador(a)¹:</label>
-                            <input type="text" class="form-control" id="iMembro_1" name="nMembro_1" placeholder="Exemplo: José Ribamar Azevedo dos Santos" value="<?php isset($cadForm['membro_1']) ? $cadForm['membro_1'] : '' ?>"required>
+                            <input type="text" class="form-control" id="iMembro_1" name="nMembro_1" placeholder="Exemplo: José Ribamar Azevedo dos Santos" value="<?php echo isset($cadForm['membro_1']) ? $cadForm['membro_1'] : '' ?>"required>
                             <div class="invalid-feedback">
                                 Informe o/a Avaliador(a)¹
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="imembro_2" class="form-label">Avaliador(a)²:</label>
-                            <input type="text" class="form-control" id="imembro_2" name="nMembro_2" placeholder="Exemplo: Vilma Ribeiro de Almeida" value="<?php isset($cadForm['membro_2']) ? $cadForm['membro_2'] : '' ?>"required>
+                            <input type="text" class="form-control" id="imembro_2" name="nMembro_2" placeholder="Exemplo: Vilma Ribeiro de Almeida" value="<?php echo isset($cadForm['membro_2']) ? $cadForm['membro_2'] : '' ?>"required>
                             <div class="invalid-feedback">
                                 Informe o/a Avaliador(a)²
                             </div>
@@ -136,46 +136,47 @@
 
                         <div class="col-md-12">
                             <label for="iReferencia" class="form-label">Referência de citação:</label>
-                            <textarea class="form-control"  name="nReferencia" rows="5"id="iReferencia" placeholder="Exemplo: ALENCAR, Joab Torres. Sistema de informação gerencial à cooperativa dos taxistas de Itaituba - COOTAX. Orientador: Prof. Me. Diego da Silva Smith. 2019. 118 f. Trabalho de Conclusão de Curso (Graduação em Tecnologia em Análise e Desenvolvimento de Sistemas) — Instituto Federal de Educação, Ciência e Tecnologia do Pará – IFPA. Campus Itaituba, 2019." required><?php isset($cadForm['referencia']) ? $cadForm['referencia'] : '' ?></textarea>
+                            <textarea class="form-control"  name="nReferencia" rows="5"id="iReferencia" placeholder="Exemplo: ALENCAR, Joab Torres. Sistema de informação gerencial à cooperativa dos taxistas de Itaituba - COOTAX. Orientador: Prof. Me. Diego da Silva Smith. 2019. 118 f. Trabalho de Conclusão de Curso (Graduação em Tecnologia em Análise e Desenvolvimento de Sistemas) — Instituto Federal de Educação, Ciência e Tecnologia do Pará – IFPA. Campus Itaituba, 2019." required><?php echo isset($cadForm['referencia']) ? $cadForm['referencia'] : '' ?></textarea>
                             <div class="invalid-feedback">
                                 Informe a referência de citação
                             </div>
                         </div>
                         <div class="col-md-12">
                             <label for="iResumo" class="form-label">Resumo:</label>
-                            <textarea class="form-control" name="nResumo" id="iResumo" rows="10" name="nResumo" placeholder="Exemplo: Diante do elevado nível de competitividade no campo econômico, em função do processo de mudanças aceleradas com avanços tecnológicos e disseminação do uso de sistemas de informação gerencial, está realidade tem levado as cooperativas à necessidade primária de desenvolver mecanismos que assegurem a sua sustentabilidade no mercado...." required><?php isset($cadForm['resumo']) ? $cadForm['resumo'] : '' ?></textarea>
+                            <textarea class="form-control" name="nResumo" id="iResumo" rows="10" name="nResumo" placeholder="Exemplo: Diante do elevado nível de competitividade no campo econômico, em função do processo de mudanças aceleradas com avanços tecnológicos e disseminação do uso de sistemas de informação gerencial, está realidade tem levado as cooperativas à necessidade primária de desenvolver mecanismos que assegurem a sua sustentabilidade no mercado...." required><?php echo isset($cadForm['resumo']) ? $cadForm['resumo'] : '' ?></textarea>
                             <div class="invalid-feedback">
                                 Informe o resumo
                             </div>
                         </div>
                         <div class="col-md-12">
                             <label for="chave" class="form-label">Palavras-chave:</label>
-                            <input type="text" class="form-control" id="iPalavras-chave" name="nPalavras" placeholder="Exemplo: Tecnologia da Informação; Sistema de Informação; Cooperativas; Cooperativismo." value="<?php isset($cadForm['palavras_chave']) ? $cadForm['palavras_chave'] : '' ?>"required>
+                            <input type="text" class="form-control" id="iPalavras-chave" name="nPalavras" placeholder="Exemplo: Tecnologia da Informação; Sistema de Informação; Cooperativas; Cooperativismo." value="<?php echo isset($cadForm['palavras_chave']) ? $cadForm['palavras_chave'] : '' ?>"required>
                             <div class="invalid-feedback">
                                 informe as palavras-chave
                             </div>
                         </div>
                         <div class="col-md-12">
                             <label for="iAbstract" class="form-label">Abstract:</label>
-                            <textarea class="form-control" id="iAbstract" rows="10" name="nAbstract" placeholder="Exemplo: Given the high level of competitiveness in the economic field, due to the process of accelerated changes with technological advances and dissemination of the use of management information systems, this reality has led cooperatives to the primary need to develop mechanisms to ensure their sustainability in the market..." required><?php isset($cadForm['abstract']) ? $cadForm['abstract'] : '' ?></textarea>
+                            <textarea class="form-control" id="iAbstract" rows="10" name="nAbstract" placeholder="Exemplo: Given the high level of competitiveness in the economic field, due to the process of accelerated changes with technological advances and dissemination of the use of management information systems, this reality has led cooperatives to the primary need to develop mechanisms to ensure their sustainability in the market..." required><?php echo isset($cadForm['abstract']) ? $cadForm['abstract'] : '' ?></textarea>
                             <div class="invalid-feedback">
                                 Informe o abstract
                             </div>
                         </div>
                         <div class="col-md-12">
                             <label for="ikeywords" class="form-label">Keywords:</label>
-                            <input type="text" class="form-control" id="ikeywords" name="nKeywords" placeholder="Exemplo: Information Technology; Information System; Cooperatives; Cooperativism." value="<?php isset($cadForm['keywords']) ? $cadForm['keywords'] : '' ?>"required>
+                            <input type="text" class="form-control" id="ikeywords" name="nKeywords" placeholder="Exemplo: Information Technology; Information System; Cooperatives; Cooperativism." value="<?php echo isset($cadForm['keywords']) ? $cadForm['keywords'] : '' ?>"required>
                             <div class="invalid-feedback">
                                 informe as keywords
                             </div>
                         </div>
                         <div class="col-md-12">
                             <label for="iarquivo" class="form-label">Arquivo: <small class="bg-danger text-white p-1">Recomenda-se que o arquivo esteja na extensão em PDF, com tamanho o máximo de 20 MB (megabyte)</small></label>
-                            <input type="hidden" name="nFileEnviado"  value="<?php echo isset($chamado['anexo']) ? $chamado['anexo'] : null; ?>"/>
+                            <input type="hidden" name="nFileEnviado"  value="<?php echo isset($cadForm['arquivo']) ? $cadForm['arquivo'] : null; ?>"/>
                             <div class="mb-3">
-                                <input type="file" class="form-control" id="iarquivo"  name="nFile" aria-label="file example" required>
+                                <input type="file" class="form-control" id="iarquivo"  name="nFile" aria-label="file example">
                                 <div class="invalid-feedback">Adicione o arquivo</div>
                             </div>
+                            <input type="text" class="form-control" disabled="true" value="Aquivo Adicionado: <?php echo isset($cadForm['arquivo']) ? BASE_URL . $cadForm['arquivo'] : null; ?>"/>
                         </div>
                         <div class="row mt-3">
                             <div class="form-group col">

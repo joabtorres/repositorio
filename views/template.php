@@ -54,9 +54,9 @@
                                     <i class="fa fa-search"></i> Consultar
                                 </a>
                                 <ul class="dropdown-menu ">
-                                    <li><a class="dropdown-item" href="<?php echo BASE_URL?>turma/consultar"> <i class="fa fa-search"></i> Turmas</a></li>
-                                    <li><a class="dropdown-item" href="#"> <i class="fa fa-search"></i> Solicitação de correção de publicação</a></li>
-                                    <li><a class="dropdown-item" href="#"> <i class="fa fa-search"></i>Solicitação de remoção de publicação</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo BASE_URL ?>turma/consultar"> <i class="fa fa-search"></i> Turmas</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo BASE_URL ?>home"> <i class="fa fa-search"></i> Publicações</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo BASE_URL ?>usuario/consultar"> <i class="fa fa-search"></i> Usuário</a></li>
                                 </ul>
                             </li>
                         <?php endif; ?>
@@ -65,9 +65,8 @@
                                 <i class="fa fa-download"></i> Documentos
                             </a>
                             <ul class="dropdown-menu ">
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de publicação</a></li>
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de correção de publicação</a></li>
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-download"></i> Solicitação de remoção de publicação</a></li>
+                                <li><a class="dropdown-item" href="<?php echo BASE_URL ?>assets/media/solicitacao_de_publicao.doc" download> <i class="fa fa-download"></i> Solicitação de publicação</a></li>
+                                <li><a class="dropdown-item" href="<?php echo BASE_URL ?>assets/media/solicitacao_de_correcao_de_publicao.doc" download> <i class="fa fa-download"></i> Solicitação de correção de publicação</a></li>
                             </ul>
                         </li>   
                         <li class="nav-item d-sm-none d-md-block">

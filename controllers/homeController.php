@@ -47,7 +47,7 @@ class homeController extends controller {
             }
         }
         //paginacao
-        $limite = 2;
+        $limite = 10;
         $total_registro = $crudModel->read($sql, $arrayForm);
         $total_registro = empty($total_registro) ? array() : $total_registro;
         $paginas = count($total_registro) / $limite;
@@ -60,6 +60,8 @@ class homeController extends controller {
         $dados['metodo_buscar'] = $parametros;
         $sql .= "  ORDER BY p.cod ASC LIMIT $indice,$limite ";
         $dados['publicacoes'] = $crudModel->read($sql, $arrayForm);
+
+        $dados['maisvisitados'] = $crudModel->read('SELECT cod, titulo FROM publicacao ORDER BY qtd DESC LIMIT 0,10');
         $this->loadTemplate('home', $dados);
     }
 
@@ -68,7 +70,12 @@ class homeController extends controller {
         header('Content-Type: text/html; charset=utf-8');
         if (isset($_POST) && is_array($_POST) && !empty($_POST)) {
             $crudModel = new crud_db();
-            $resultado = $crudModel->read("SELECT * FROM turma WHERE curso_cod=:cod ORDER BY turma ASC", array('cod' => $_POST['cod']));
+            $cod = isset($_POST['cod']) ? $_POST['cod'] : null;
+            if (!empty($cod)) {
+                $resultado = $crudModel->read("SELECT * FROM turma WHERE curso_cod=:cod ORDER BY turma ASC", array('cod' => $cod));
+            } else {
+                $resultado = $crudModel->read("SELECT * FROM turma ORDER BY turma ASC");
+            }
             echo '<option value ="">Todas</option>';
             foreach ($resultado as $indice) {
                 echo '<option value = "' . $indice['cod'] . '">' . $indice['turma'] . '</option>';

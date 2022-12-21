@@ -28,8 +28,8 @@ class publicacaoController extends controller {
                     'referencia' => addslashes($_POST['nReferencia']),
                     'resumo' => addslashes($_POST['nResumo']),
                     'palavras_chave' => addslashes($_POST['nPalavras']),
-                    'abstract' => addslashes($_POST['nAbstract']),
-                    'keywords' => addslashes($_POST['nKeywords'])
+                    'abstract' => $_POST['nAbstract'],
+                    'keywords' => $_POST['nKeywords']
                 );
                 if (isset($_FILES['nFile']) && $_FILES['nFile']['error'] == 0) {
                     $formCad['arquivo'] = $this->upload_file($_FILES['nFile']);
@@ -56,6 +56,59 @@ class publicacaoController extends controller {
         }
     }
 
+    public function editar($cod) {
+        if ($this->checkUser() >= 1) {
+            $dados = array();
+            $crudModel = new crud_db();
+            $dados['areas_de_conhecimento'] = $crudModel->read('SELECT * FROM areas_de_conhecimento WHERE instituicao_cod=:cod', array('cod' => $this->getCodInstituicao()));
+            $dados['turmas'] = $crudModel->read('SELECT t.*, c.curso FROM turma AS t INNER JOIN curso AS c ON t.curso_cod=c.cod');
+            $formCad = $crudModel->read_specific('SELECT * FROM publicacao WHERE cod = :cod', array('cod' => $cod));
+            if (isset($_POST['nSalvar'])) {
+                $formCad = array(
+                    'cod' => $_POST['nCod'],
+                    'instituicao_cod' => $this->getCodInstituicao(),
+                    'area_cod' => addslashes($_POST['nArea']),
+                    'turma_cod' => addslashes($_POST['nTurma']),
+                    'modalidade' => addslashes($_POST['nModalidade']),
+                    'titulo' => addslashes($_POST['nTitulo']),
+                    'data' => addslashes($_POST['nData']),
+                    'autor' => addslashes($_POST['nAutor']),
+                    'orientador' => addslashes($_POST['nOrientador']),
+                    'coorientador' => addslashes($_POST['nCoorientador']),
+                    'membro_1' => addslashes($_POST['nMembro_1']),
+                    'membro_2' => addslashes($_POST['nMembro_2']),
+                    'referencia' => addslashes($_POST['nReferencia']),
+                    'resumo' => addslashes($_POST['nResumo']),
+                    'palavras_chave' => addslashes($_POST['nPalavras']),
+                    'abstract' => $_POST['nAbstract'],
+                    'keywords' => $_POST['nKeywords']
+                );
+                if (isset($_FILES['nFile']) && $_FILES['nFile']['error'] == 0) {
+                    $formCad['arquivo'] = $this->upload_file($_FILES['nFile']);
+                    if (!empty($_POST['nFileEnviado'])) {
+                        $crudModel->delete_file($_POST['nFileEnviado']);
+                    }
+                } else {
+                    $formCad['arquivo'] = addslashes($_POST['nFileEnviado']);
+                }
+                $resultado = $crudModel->create('UPDATE publicacao SET instituicao_cod=:instituicao_cod, area_cod=:area_cod, turma_cod=:turma_cod, modalidade=:modalidade, titulo=:titulo, data=:data, autor=:autor, orientador=:orientador, coorientador=:coorientador, membro_1=:membro_1, membro_2=:membro_2, referencia=:referencia, resumo=:resumo, palavras_chave=:palavras_chave, abstract=:abstract, keywords=:keywords, arquivo=:arquivo WHERE cod=:cod', $formCad);
+                if ($resultado) {
+                    $_SESSION['cad_acao'] = true;
+                    $url = BASE_URL . 'publicacao/editar/' . $cod;
+                    header("Location: " . $url);
+                }
+            } else if (isset($_SESSION['cad_acao']) && !empty($_SESSION['cad_acao'])) {
+                $_SESSION['cad_acao'] = false;
+                $dados['erro'] = array('class' => 'alert-success', 'msg' => "<i class='fa fa-check-circle' aria-hidden='true'></i> Alteração realizada com sucesso!");
+            }
+            $dados['cadForm'] = $formCad;
+            $this->loadTemplate('publicacao/editar', $dados);
+        } else {
+            $url = BASE_URL . 'home';
+            header("location: %url");
+        }
+    }
+
     private function upload_file($file) {
         $arquivo = array();
         $arquivo['temp'] = $file['tmp_name'];
@@ -75,11 +128,33 @@ class publicacaoController extends controller {
         $crudModel = new crud_db();
         $resultado = $crudModel->read_specific("SELECT p.*, a.area, t.turma, c.curso FROM publicacao AS p  INNER JOIN areas_de_conhecimento as a INNER JOIN turma as t INNER JOIN curso as c WHERE p.cod>0 AND p.area_cod=a.cod AND t.curso_cod=c.cod AND t.cod=p.turma_cod AND p.cod=:cod", array('cod' => $cod));
         if ($resultado) {
+            $qtd = intval($resultado['qtd']);
+            $qtd++;
+            $crudModel->create('UPDATE publicacao SET qtd=:qtd WHERE cod=:cod', array('qtd' => $qtd, 'cod' => $cod));
             $dados['publicacao'] = $resultado;
             $this->loadTemplate('publicacao/publicacao', $dados);
         } else {
             $url = BASE_URL . 'home';
             header("location: %url");
+        }
+    }
+
+    public function excluir($cod) {
+        if ($this->checkUser()) {
+            $crudModel = new crud_db();
+            $resultado = $crudModel->read('SELECT * FROM publicacao WHERE cod=:cod', array('cod' => $cod));
+            if (!empty($resultado)) {
+                foreach ($resultado as $index) {
+                    unlink($index['arquivo']);
+                }
+                if ($crudModel->remove('DELETE FROM publicacao WHERE cod=:cod', array('cod' => $cod))) {
+                    $url = BASE_URL . 'home/index';
+                    header("location: $url");
+                }
+            }
+        } else {
+            $url = BASE_URL . 'home';
+            header("location: $url");
         }
     }
 

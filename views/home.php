@@ -155,16 +155,23 @@
                     <h6 class="card-title m-1">TOP 10 TCC MAIS VISUALIZADOS</h6>
                 </div>
                 <div class="card-body">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-                        <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-                        <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-                        <a class="list-group-item list-group-item-action disabled">A disabled link item</a>
-                        <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-                        <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-                        <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-                        <a class="list-group-item list-group-item-action disabled">A disabled link item</a>
-                    </div>
+                    <?php
+                    if (isset($maisvisitados)):
+                        foreach ($maisvisitados as $index) :
+                            ?>
+                            <div class = "list-group">
+                                <a href = "<?php echo BASE_URL . 'publicacao/publicacao/' . $index['cod'] ?>" class = "list-group-item list-group-item-action small"><?php echo $index['titulo'] ?></a>
+                            </div>
+                            <?php
+                        endforeach;
+                    else:
+                        ?>
+                        <div class="mt-2 mb-2 bg-danger text-white">
+                            <p class="text-start p-2">Desculpe, nenhum registro foi encontrado!</p>
+                        </div>
+                    <?php
+                    endif;
+                    ?>
                 </div>
             </div>
         </div>
